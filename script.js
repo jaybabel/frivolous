@@ -1,81 +1,58 @@
 //console.log('connected')
 
-const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], ["Which is a movie?", "The Onion Field"], ["Which is a vegetable?", "Onion"], ["Which is a news source?", "The Onion"]]
-const answersArray = []
-console.log(answersArray)
+const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], ["Which is a movie?", "The Onion Field"], ["Which is a vegetable?", "Onion"], ["Which is a news source?", "The Onion"], ["A song by Booker T and the MGs?", "Green Onions"]]
+const answersArray = ["", "", "",""]
 
 let playerName
+
+// choose random question
 let rQ = parseInt(Math.floor(Math.random()*4))
 document.getElementById("question").innerHTML = questionsArray[rQ][0]
 console.log(rQ)
 
-document.querySelector("#ansA").innerHTML = questionsArray[2][1];
-document.querySelector("#ansB").innerHTML = questionsArray[1][1];
-document.querySelector("#ansC").innerHTML = questionsArray[0][1];
-document.querySelector("#ansD").innerHTML = questionsArray[3][1];
+// randomly place correct answer
+let correctAnswer = parseInt(Math.floor(Math.random()*4))
+answersArray[correctAnswer] = questionsArray[rQ][1]
+console.log('after correct answer added ', answersArray)
 
-// document.getElementById("AnswerA > label").innerHTML = answersArray[1]
+for (let i = 0; i < 4; i++) {  
+    // check for available ("") elements
+    if (answersArray[i] === "") {
+        let randomAnswer = parseInt(Math.floor(Math.random()*5))
+        // check to make sure answer is unique
+        while (answersArray[i] === "") {
+            if ((answersArray[0] !== questionsArray[randomAnswer][1]) 
+                && (answersArray[1] !== questionsArray[randomAnswer][1])
+                && (answersArray[2] !== questionsArray[randomAnswer][1])
+                && (answersArray[3] !== questionsArray[randomAnswer][1])) {
+                answersArray[i] = questionsArray[randomAnswer][1]
+            }
+            randomAnswer = parseInt(Math.floor(Math.random()*5))
+        }
+        console.log('add a wrong one', answersArray)
+    }
+}
+console.log('after three wrong answers added ', answersArray)
+
+
+document.querySelector("#ansA").innerHTML = answersArray[0];
+document.querySelector("#ansB").innerHTML = answersArray[1];
+document.querySelector("#ansC").innerHTML = answersArray[2];
+document.querySelector("#ansD").innerHTML = answersArray[3];
 
 
 document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
-    // if (document.getElementById("answerA").checked) {
-    //    // console.log(document.querySelector("#answerA").input.value)
-    //     console.log('answer A chosen');
-    // }
-    // if (document.getElementById("answerB").checked) {
-    //  //   console.log(document.querySelector("#ansB").label.value)
-    //     console.log('answer B chosen');
-    // }
-    // if (document.getElementById("answerC").checked) {
-    //     console.log('answer C chosen');
-    // }
-    // if (document.getElementById("answerD").checked) {
-    //     console.log('answer D chosen');
-    // } 
-    displayRadioValue()
+      displayRadioValue()
 })
 
 
 function displayRadioValue() {
     var ele = document.getElementsByName('answer');
       
-    for(i = 0; i < ele.length; i++) {
+    for(let i = 0; i < ele.length; i++) {
         if(ele[i].checked)
         document.getElementById("result").innerHTML
                 = "Answer: "+ele[i].value;
     }
-    // if (ele[i].value === rQ) {
-    //     console.log("You are correct!")
-    // }
 }
 
-
-
-
-
-// document.getElementById("answerA").innerHTML = answersArray[2]
-// document.getElementById("answerB").innerHTML = answersArray[0]
-// document.getElementById("answerC").innerHTML = answersArray[1]
-// document.getElementById("answerD").innerHTML = answersArray[3]
-
-// ========= Adds Answer Choices (LI) to UL ========================
-// function addAnswerItems(possibleAnswer) {
-//     let li = document.createElement('li');
-//     li.textContent = possibleAnswer;
-//     return li;
-// }
-
-// const answers = document.querySelector('#answerList');
-
-// for (let i = 0; i < 4; i++) {
-//     answerList.appendChild(addAnswerItems(answersArray[i]));
-// }
-// ========= End add LI to UL
-
-// answerList.appendChild(addAnswerItems(answersArray[0]));
-// answerList.appendChild(addAnswerItems('test answer B'));
-// answerList.appendChild(addAnswerItems('test answer C'));
-// answerList.appendChild(addAnswerItems('test answer D'));
-
-
-// Submit Answer Button
