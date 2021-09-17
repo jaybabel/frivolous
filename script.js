@@ -5,7 +5,7 @@ const answersArray = ["", "", "",""]
 
 let playerName
 let playerScore = 0
-let questionCount = 1
+let questionCount = 0
 let rQ
 let correctAnswer
 
@@ -62,8 +62,8 @@ function newGame() {
 }
 
 function updateScoreboard() {
-    document.querySelector("#currentScore").innerHTML = playerScore
-    document.querySelector("#currentQuestionCount").innerHTML = questionCount
+    document.getElementById("currentScore").innerHTML = "Current score: "+playerScore
+    document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
 function nextQuestion() {
@@ -73,7 +73,7 @@ function nextQuestion() {
     addBogusAnswers()
     loadAnswers()
     questionCount ++
-    //updateScoreboard()
+    updateScoreboard()
     //console.log(questionCount)
 }
 
