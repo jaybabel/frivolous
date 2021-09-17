@@ -8,12 +8,10 @@ let playerName
 // choose random question
 let rQ = parseInt(Math.floor(Math.random()*4))
 document.getElementById("question").innerHTML = questionsArray[rQ][0]
-console.log(rQ)
 
 // randomly place correct answer
 let correctAnswer = parseInt(Math.floor(Math.random()*4))
 answersArray[correctAnswer] = questionsArray[rQ][1]
-console.log('after correct answer added ', answersArray)
 
 for (let i = 0; i < 4; i++) {  
     // check for available ("") elements
@@ -29,20 +27,17 @@ for (let i = 0; i < 4; i++) {
             }
             randomAnswer = parseInt(Math.floor(Math.random()*5))
         }
-        console.log('add a wrong one', answersArray)
     }
 }
-console.log('after three wrong answers added ', answersArray)
-
 
 document.querySelector("#ansA").innerHTML = answersArray[0];
 document.querySelector("#ansB").innerHTML = answersArray[1];
 document.querySelector("#ansC").innerHTML = answersArray[2];
 document.querySelector("#ansD").innerHTML = answersArray[3];
 
-
 document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
       displayRadioValue()
+      compareRadioValue()
 })
 
 
@@ -52,7 +47,21 @@ function displayRadioValue() {
     for(let i = 0; i < ele.length; i++) {
         if(ele[i].checked)
         document.getElementById("result").innerHTML
-                = "Answer: "+ele[i].value;
+                = "Your answer: "+ele[i].value;
     }
 }
 
+function compareRadioValue() {
+    let ele = document.getElementsByName('answer');
+    let buttonSelection;
+
+    for(let i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+          buttonSelection = ele[i].value
+    }
+    if (buttonSelection == correctAnswer) {
+        console.log('You are correct!') 
+        } else {
+            console.log('Try again.')
+    }
+}
