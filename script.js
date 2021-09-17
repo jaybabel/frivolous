@@ -4,6 +4,8 @@ const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], ["Which is
 const answersArray = ["", "", "",""]
 
 let playerName
+let playerScore = 0
+let questionCount = 1
 let rQ
 let correctAnswer
 
@@ -45,6 +47,36 @@ function loadAnswers() {
     document.querySelector("#ansD").innerHTML = answersArray[3];
 }
 
+function initialize() {
+    // clear answersArray
+    for (let i = 0; i < 4; i++) {
+        answersArray[i] = ""
+    }
+    // uncheck radio button
+    let radio = document.querySelector('input[type=radio][name=answer]:checked');
+    radio.checked = false;
+}
+
+function newGame() {
+    console.log("function newGame")
+}
+
+function updateScoreboard() {
+    document.querySelector("#currentScore").innerHTML = playerScore
+    document.querySelector("#currentQuestionCount").innerHTML = questionCount
+}
+
+function nextQuestion() {
+    initialize()
+    chooseQuestion()
+    placeCorrectAnswer()
+    addBogusAnswers()
+    loadAnswers()
+    questionCount ++
+    //updateScoreboard()
+    //console.log(questionCount)
+}
+
 function displayRadioValue() {
     var ele = document.getElementsByName('answer');
       
@@ -64,9 +96,13 @@ function compareRadioValue() {
           buttonSelection = ele[i].value
     }
     if (buttonSelection == correctAnswer) {
-        console.log('You are correct!') 
+        console.log('You are correct!')
+        playerScore ++
+        console.log(playerScore)
+        nextQuestion() 
         } else {
             console.log('Try again.')
+            nextQuestion()
     }
 }
 
