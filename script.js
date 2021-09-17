@@ -1,33 +1,50 @@
 //console.log('connected')
 
-const questionsArray = [ "Which is a Beatles song?", "Which is a movie?", "Which is a vegetable?", "Which is a news source?"]
-const answersArray = ["Glass Onion", "The Onion Field", "Onion", "The Onion"]
+const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], ["Which is a movie?", "The Onion Field"], ["Which is a vegetable?", "Onion"], ["Which is a news source?", "The Onion"]]
+const answersArray = []
 console.log(answersArray)
 
 let playerName
 let rQ = parseInt(Math.floor(Math.random()*4))
-document.getElementById("question").innerHTML = questionsArray[rQ]
+document.getElementById("question").innerHTML = questionsArray[rQ][0]
 console.log(rQ)
 
+document.querySelector("#ansA").innerHTML = questionsArray[2][1];
+document.querySelector("#ansB").innerHTML = questionsArray[1][1];
+document.querySelector("#ansC").innerHTML = questionsArray[0][1];
+document.querySelector("#ansD").innerHTML = questionsArray[3][1];
+
+// document.getElementById("AnswerA > label").innerHTML = answersArray[1]
 
 
 document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
-    if (document.getElementById("answerA").checked) {
-        console.log('answer A chosen');
-    }
-    if (document.getElementById("answerB").checked) {
-        console.log('answer B chosen');
-    }
-    if (document.getElementById("answerC").checked) {
-        console.log('answer C chosen');
-    }
-    if (document.getElementById("answerD").checked) {
-        console.log('answer D chosen');
-    } 
+    // if (document.getElementById("answerA").checked) {
+    //    // console.log(document.querySelector("#answerA").input.value)
+    //     console.log('answer A chosen');
+    // }
+    // if (document.getElementById("answerB").checked) {
+    //  //   console.log(document.querySelector("#ansB").label.value)
+    //     console.log('answer B chosen');
+    // }
+    // if (document.getElementById("answerC").checked) {
+    //     console.log('answer C chosen');
+    // }
+    // if (document.getElementById("answerD").checked) {
+    //     console.log('answer D chosen');
+    // } 
+    displayRadioValue()
 })
 
 
-
+function displayRadioValue() {
+    var ele = document.getElementsByName('answer');
+      
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        document.getElementById("result").innerHTML
+                = "Answer: "+ele[i].value;
+    }
+}
 
 
 
