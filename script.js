@@ -1,7 +1,19 @@
 //console.log('connected')
 
-const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], ["Which is a movie?", "The Onion Field"], ["Which is a vegetable?", "Onion"], ["Which is a news source?", "The Onion"], ["A song by Booker T and the MGs?", "Green Onions"]]
+const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], 
+["Which is a movie?", "The Onion Field"], 
+["Which is a vegetable?", "Onion"], 
+["Which is a news source?", "The Onion"], 
+["A song by Booker T and the MGs?", "Green Onions"], 
+["Supergroup with members from The Hollies, The Byrds, and Buffalo Springfield", "CSNY"], 
+["Supergroup with members from Mott The Hoople, King Crimson, and Free", "Bad Company"], ["Supergroup with Peter Frampton", "Humble Pie"], 
+["First known as The Jefferson Airplane", "Starship"], 
+["Supergroup with members from Cream and Traffic", "Blind Faith"]]
+
+//const 10_questionsArrayTemplate = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]]
 const answersArray = ["", "", "",""]
+const questionTrackerArray = ["", "", "", "", "", "", "", "", "",""]
+const questionArrayLength = 10
 
 let playerName
 let playerScore = 0
@@ -11,7 +23,7 @@ let correctAnswer
 
 // choose random question
 function chooseQuestion() {
-    rQ = parseInt(Math.floor(Math.random()*4))
+    rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
     document.getElementById("question").innerHTML = questionsArray[rQ][0]
 }
 
@@ -25,7 +37,7 @@ function addBogusAnswers() {
     for (let i = 0; i < 4; i++) {  
         // check for available ("") elements
         if (answersArray[i] === "") {
-            let randomAnswer = parseInt(Math.floor(Math.random()*5))
+            let randomAnswer = parseInt(Math.floor(Math.random()*questionArrayLength))
             // check to make sure answer is unique
             while (answersArray[i] === "") {
                 if ((answersArray[0] !== questionsArray[randomAnswer][1]) 
@@ -34,7 +46,7 @@ function addBogusAnswers() {
                     && (answersArray[3] !== questionsArray[randomAnswer][1])) {
                     answersArray[i] = questionsArray[randomAnswer][1]
                 }
-                randomAnswer = parseInt(Math.floor(Math.random()*5))
+                randomAnswer = parseInt(Math.floor(Math.random()*questionArrayLength))
             }
         }
     }
