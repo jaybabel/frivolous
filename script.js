@@ -44,6 +44,9 @@ function displayRadioValue() {
         document.getElementById("result").innerHTML
                 = "Answer: "+ele[i].value;
     }
+    // if (ele[i].value === rQ) {
+    //     console.log("You are correct!")
+    // }
 }
 
 
