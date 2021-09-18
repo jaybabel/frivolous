@@ -14,13 +14,16 @@ div {
     background-color: floralwhite;
 }
 
-/* #triviaCard {
-    display: inline-grid;
-    grid-template-columns: 20px 500px;
-    grid-template-rows: 30px 120px;
+#triviaCard {
+    padding: 5px 10px 15px 30px;
 }
 
-#triviaCard > input {
+#theLeaderBoard {
+    padding: 5px 10px 15px 30px;
+}
+
+
+/* #triviaCard > input {
     grid-column-start: 1;
     grid-column-end: 1;
     grid-row-start: 2;

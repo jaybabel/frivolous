@@ -114,6 +114,14 @@ function gameOver() {
     updateScoreboard()
     document.querySelector("#submitAnswer").removeEventListener("click", getPlayerAnswer);
     console.log('game over')
+    // add player and stats to leaderboard
+    // leaderBoardArray of arrays [playerName, correct answers, total questions]
+    currentPlayer[1] = playerScore + + currentPlayer[1] 
+    currentPlayer[2] = questionCount + + currentPlayer[2] 
+    //leaderBoardArray.push
+    leaderBoardArray.push(currentPlayer)
+    console.log(currentPlayer)
+    console.log(leaderBoardArray)
 }
 
 function nextQuestion() {
@@ -182,15 +190,9 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
  document.getElementById("playerName").addEventListener("keyup", function(e) {
      if (e.key === 'Enter') {
          getPlayerName()
-     } 
+         document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
+        } 
  });
-
-// document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
-//     console.log("Question count at start submit answer listener: ", questionCount)
-//    // displayRadioValue()
-//     compareRadioValue()
-//     console.log("Question count at end submit answer listener: ", questionCount)
-// })
 
 fillQuestionTrackerArray();
 chooseQuestion()
