@@ -15,10 +15,21 @@ const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"],
 ["Apple Records band, formerly known as the Iveys", "Badfinger"], 
 ["Previous band of BTO founder.", "The Guess Who"]]
 
+const movieQuotesArray = [["Well doc, I imagine you wanna know what makes ol' Jack tick.", "One Flew Over The Cuckoo's Nest"], 
+["Pull yourself together man. You're going into the forest afterall. You've got to keep your wits about you", "Harry Potter and the Sorcerer's Stone"], 
+["This town needs an enema!", "Batman"], 
+["I know you. You're Dillon. The famous bouncer.", "Roadhouse"], 
+["They're all gone. Lucky Ned Pepper. Gone. Your fifty dollar gold piece. Gone. Bottle of whickey taken in as evidence. Gone. All gone.", "True Grit"]] 
+//["", ""], 
+
 //const 10_questionsArrayTemplate = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]]
 const answersArray = ["", "", "",""]
 const questionTrackerArray = ["", "", "", "", "", "", "", "", "",""]
 const questionArrayLength = 10
+
+  // leaderBoardArray of arrays [playerName, correct answers, total questions]
+const leaderBoardArray = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
+const currentPlayer = ["", "", ""]
 
 let playerName
 let playerScore = 0
@@ -161,6 +172,18 @@ function getPlayerAnswer() {
 }
 
 document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
+
+ // leaderBoardArray of arrays [playerName, correct answers, total questions]
+ function getPlayerName() {
+    currentPlayer[0] = document.querySelector("#playerName").value
+    console.log(currentPlayer)
+ }
+
+ document.getElementById("playerName").addEventListener("keyup", function(e) {
+     if (e.key === 'Enter') {
+         getPlayerName()
+     } 
+ });
 
 // document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
 //     console.log("Question count at start submit answer listener: ", questionCount)
