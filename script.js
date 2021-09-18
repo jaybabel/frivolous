@@ -28,7 +28,7 @@ const questionTrackerArray = ["", "", "", "", "", "", "", "", "",""]
 const questionArrayLength = 10
 
   // leaderBoardArray of arrays [playerName, correct answers, total questions]
-const leaderBoardArray = [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
+const leaderBoardArray = []
 const currentPlayer = ["", "", ""]
 
 let playerName
@@ -51,15 +51,12 @@ function fillQuestionTrackerArray() {
             rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
         }
     }
-    console.log('loding question tracker: ', questionTrackerArray)
 }
 
 // choose random question
 function chooseQuestion() {
     currentQuestion = questionTrackerArray.pop();
-    console.log(currentQuestion)
     document.getElementById("question").innerHTML = questionsArray[currentQuestion][0]
-    console.log("after pop", questionTrackerArray)
 }
 
 // randomly place correct answer
@@ -109,30 +106,41 @@ function updateScoreboard() {
     document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
+function updateTheLeaderBorder() {
+    if (leaderBoardArray.length == 0) {
+        leaderBoardArray.push(currentPlayer)
+    } else {
+        for(i = 0; i < leaderBoardArray.length; i++) {
+            if (currentPlayer[0] == leaderBoardArray[i, 0]) {
+                leaderBoardArray[i, 1] = currentPlayer[1] + + leaderBoardArray[i, 1] 
+                leaderBoardArray[i, 2] = currentPlayer[2] + + leaderBoardArray[i, 2] 
+            }
+        }
+    }
+    // leaderBoardArray.push(currentPlayer)
+    console.log(currentPlayer)
+    console.log(leaderBoardArray)
+    document.getElementsByTagName("#theLeaderBoard > li").innerHTML = "leader here"
+}
+
 function gameOver() {
     questionCount ++
     updateScoreboard()
     document.querySelector("#submitAnswer").removeEventListener("click", getPlayerAnswer);
-    console.log('game over')
-    // add player and stats to leaderboard
-    // leaderBoardArray of arrays [playerName, correct answers, total questions]
     currentPlayer[1] = playerScore + + currentPlayer[1] 
-    currentPlayer[2] = questionCount + + currentPlayer[2] 
-    //leaderBoardArray.push
-    leaderBoardArray.push(currentPlayer)
-    console.log(currentPlayer)
-    console.log(leaderBoardArray)
+    currentPlayer[2] = questionCount + + currentPlayer[2]
+    updateTheLeaderBorder()
 }
 
 function nextQuestion() {
     if (questionCount < maxQuestions-1) {
-    initializeAnswers()
-    chooseQuestion()
-    placeCorrectAnswer()
-    addBogusAnswers()
-    loadAnswers()
-    questionCount ++
-    updateScoreboard()
+        initializeAnswers()
+        chooseQuestion()
+        placeCorrectAnswer()
+        addBogusAnswers()
+        loadAnswers()
+        questionCount ++
+        updateScoreboard()
     } else {
         updateScoreboard()
         gameOver()
@@ -149,18 +157,14 @@ function compareRadioValue() {
           buttonSelection = ele[i].value
     }
     if (buttonSelection == correctAnswer) {
-        console.log('You are correct!')
         playerScore ++
-        console.log('player score in compareRadioValue function: ',playerScore)
         nextQuestion() 
         } else {
-            console.log('Try again.')
             nextQuestion()
     }
 }
 
 document.querySelector("#newGame").addEventListener("click", function newGame() {
-    console.log("function newGame")
     document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
     initializeAnswers()
     fillQuestionTrackerArray()
@@ -174,9 +178,7 @@ document.querySelector("#newGame").addEventListener("click", function newGame() 
 })
 
 function getPlayerAnswer() {
-    console.log("Question count at start submit answer listener: ", questionCount)
     compareRadioValue()
-    console.log("Question count at end submit answer listener: ", questionCount)
 }
 
 document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
@@ -184,7 +186,6 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
  // leaderBoardArray of arrays [playerName, correct answers, total questions]
  function getPlayerName() {
     currentPlayer[0] = document.querySelector("#playerName").value
-    console.log(currentPlayer)
  }
 
  document.getElementById("playerName").addEventListener("keyup", function(e) {
