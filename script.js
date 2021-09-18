@@ -90,10 +90,7 @@ function initializeAnswers() {
     }
     // uncheck radio button
     let radio = document.querySelector('input[type=radio][name=answer]:checked');
-    //questionTrackerArray = ["", "", "", "", "", "", "", "", "",""]
     radio.checked = false;
-
-   // fillQuestionTrackerArray();
 }
 
 function updateScoreboard() {
@@ -121,18 +118,8 @@ function nextQuestion() {
         updateScoreboard()
         gameOver()
     }
-    //console.log(questionCount)
 }
 
-// function displayRadioValue() {
-//     var ele = document.getElementsByName('answer');
-      
-//     for(let i = 0; i < ele.length; i++) {
-//         if(ele[i].checked)
-//         document.getElementById("result").innerHTML
-//                 = "Your answer: "+ele[i].value;
-//     }
-// }
 
 function compareRadioValue() {
     let ele = document.getElementsByName('answer');
@@ -187,4 +174,3 @@ chooseQuestion()
 placeCorrectAnswer()
 addBogusAnswers()
 loadAnswers()
-//questionCount ++
