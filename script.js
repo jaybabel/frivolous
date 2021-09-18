@@ -1,14 +1,19 @@
 //console.log('connected')
 
 const questionsArray = [ ["Which is a Beatles song?", "Glass Onion"], 
-["Which is a movie?", "The Onion Field"], 
-["Which is a vegetable?", "Onion"], 
+["A book by Joseph Wambaugh.", "The Onion Field"], 
+["Which is a soup?", "French Onion"], 
 ["Which is a news source?", "The Onion"], 
 ["A song by Booker T and the MGs?", "Green Onions"], 
 ["Supergroup with members from The Hollies, The Byrds, and Buffalo Springfield", "CSNY"], 
-["Supergroup with members from Mott The Hoople, King Crimson, and Free", "Bad Company"], ["Supergroup with Peter Frampton", "Humble Pie"], 
+["Supergroup with members from Mott The Hoople, King Crimson, and Free", "Bad Company"], ["Supergroup with Peter Frampton and that guy from the Small Faces.", "Humble Pie"], 
 ["First known as The Jefferson Airplane", "Starship"], 
-["Supergroup with members from Cream and Traffic", "Blind Faith"]]
+["Supergroup with members from Cream and Traffic", "Blind Faith"],
+["Which is a movie starring Gene Hackman?", "The French Connection"], 
+["Incense and Peppermints", "Strawberry Alarm Clock"], 
+["How can I live without you? If it means a gotta get a job?", "Cracker"], 
+["Apple Records band, formerly known as the Iveys", "Badfinger"], 
+["Previous band of BTO founder.", "The Guess Who"]]
 
 //const 10_questionsArrayTemplate = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]]
 const answersArray = ["", "", "",""]
@@ -18,19 +23,38 @@ const questionArrayLength = 10
 let playerName
 let playerScore = 0
 let questionCount = 0
+let maxQuestions = 5
 let rQ
+let currentQuestion
 let correctAnswer
+
+function fillQuestionTrackerArray() {
+    let i = 0
+    rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
+    while (i < 10) {
+        if (!questionTrackerArray.includes(rQ)) {
+            questionTrackerArray[i] = rQ
+            i ++
+            rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
+        } else {
+            rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
+        }
+    }
+    console.log('loding question tracker: ', questionTrackerArray)
+}
 
 // choose random question
 function chooseQuestion() {
-    rQ = parseInt(Math.floor(Math.random()*questionArrayLength))
-    document.getElementById("question").innerHTML = questionsArray[rQ][0]
+    currentQuestion = questionTrackerArray.pop();
+    console.log(currentQuestion)
+    document.getElementById("question").innerHTML = questionsArray[currentQuestion][0]
+    console.log("after pop", questionTrackerArray)
 }
 
 // randomly place correct answer
 function placeCorrectAnswer() {
     correctAnswer = parseInt(Math.floor(Math.random()*4))
-    answersArray[correctAnswer] = questionsArray[rQ][1]
+    answersArray[correctAnswer] = questionsArray[currentQuestion][1]
 }
 
 function addBogusAnswers() {
@@ -59,18 +83,17 @@ function loadAnswers() {
     document.querySelector("#ansD").innerHTML = answersArray[3];
 }
 
-function initialize() {
+function initializeAnswers() {
     // clear answersArray
     for (let i = 0; i < 4; i++) {
         answersArray[i] = ""
     }
     // uncheck radio button
     let radio = document.querySelector('input[type=radio][name=answer]:checked');
+    //questionTrackerArray = ["", "", "", "", "", "", "", "", "",""]
     radio.checked = false;
-}
 
-function newGame() {
-    console.log("function newGame")
+   // fillQuestionTrackerArray();
 }
 
 function updateScoreboard() {
@@ -78,14 +101,23 @@ function updateScoreboard() {
     document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
+function gameOver() {
+    console.log('game over')
+}
+
 function nextQuestion() {
-    initialize()
+    if (questionCount < maxQuestions) {
+    initializeAnswers()
     chooseQuestion()
     placeCorrectAnswer()
     addBogusAnswers()
     loadAnswers()
     questionCount ++
     updateScoreboard()
+    } else {
+        updateScoreboard()
+        gameOver()
+    }
     //console.log(questionCount)
 }
 
@@ -110,7 +142,7 @@ function compareRadioValue() {
     if (buttonSelection == correctAnswer) {
         console.log('You are correct!')
         playerScore ++
-        console.log(playerScore)
+        console.log('player score in compareRadioValue function: ',playerScore)
         nextQuestion() 
         } else {
             console.log('Try again.')
@@ -118,13 +150,25 @@ function compareRadioValue() {
     }
 }
 
-document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
-    displayRadioValue()
-    compareRadioValue()
+document.querySelector("#newGame").addEventListener("click", function newGame() {
+    console.log("function newGame")
+    initializeAnswers()
+    chooseQuestion()
+    placeCorrectAnswer()
+    addBogusAnswers()
+    loadAnswers()
 })
 
+document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
+    console.log("Question count at start submit answer listener: ", questionCount)
+    displayRadioValue()
+    compareRadioValue()
+    console.log("Question count at end submit answer listener: ", questionCount)
+})
 
+fillQuestionTrackerArray();
 chooseQuestion()
 placeCorrectAnswer()
 addBogusAnswers()
 loadAnswers()
+//questionCount ++
