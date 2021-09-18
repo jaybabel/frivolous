@@ -155,11 +155,16 @@ function compareRadioValue() {
 
 document.querySelector("#newGame").addEventListener("click", function newGame() {
     console.log("function newGame")
+    document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
     initializeAnswers()
+    fillQuestionTrackerArray()
     chooseQuestion()
     placeCorrectAnswer()
     addBogusAnswers()
     loadAnswers()
+    playerScore = 0
+    questionCount = 0
+    updateScoreboard()
 })
 
 function getPlayerAnswer() {
