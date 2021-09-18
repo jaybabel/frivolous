@@ -102,11 +102,14 @@ function updateScoreboard() {
 }
 
 function gameOver() {
+    questionCount ++
+    updateScoreboard()
+    document.querySelector("#submitAnswer").removeEventListener("click", getPlayerAnswer);
     console.log('game over')
 }
 
 function nextQuestion() {
-    if (questionCount < maxQuestions) {
+    if (questionCount < maxQuestions-1) {
     initializeAnswers()
     chooseQuestion()
     placeCorrectAnswer()
@@ -121,15 +124,15 @@ function nextQuestion() {
     //console.log(questionCount)
 }
 
-function displayRadioValue() {
-    var ele = document.getElementsByName('answer');
+// function displayRadioValue() {
+//     var ele = document.getElementsByName('answer');
       
-    for(let i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
-        document.getElementById("result").innerHTML
-                = "Your answer: "+ele[i].value;
-    }
-}
+//     for(let i = 0; i < ele.length; i++) {
+//         if(ele[i].checked)
+//         document.getElementById("result").innerHTML
+//                 = "Your answer: "+ele[i].value;
+//     }
+// }
 
 function compareRadioValue() {
     let ele = document.getElementsByName('answer');
@@ -159,12 +162,20 @@ document.querySelector("#newGame").addEventListener("click", function newGame() 
     loadAnswers()
 })
 
-document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
+function getPlayerAnswer() {
     console.log("Question count at start submit answer listener: ", questionCount)
-    displayRadioValue()
     compareRadioValue()
     console.log("Question count at end submit answer listener: ", questionCount)
-})
+}
+
+document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
+
+// document.querySelector("#submitAnswer").addEventListener("click", function getPlayerAnswer() {
+//     console.log("Question count at start submit answer listener: ", questionCount)
+//    // displayRadioValue()
+//     compareRadioValue()
+//     console.log("Question count at end submit answer listener: ", questionCount)
+// })
 
 fillQuestionTrackerArray();
 chooseQuestion()
