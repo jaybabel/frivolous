@@ -33,9 +33,22 @@ div {
     background-color: rgb(212, 14, 57);
 }
 
+ #btnNewGame {
+    border-radius: 10%;
+ }
+
+ #btnNewPlayer {
+    border-radius: 10%;
+ }
+
+ #btnChangePlayer {
+    border-radius: 10%;
+ }
+
 #grpChangePlayer {
     display: flex;
     flex-direction: row;
+    background-color: rgb(212, 14, 57);
 }
 
 #grpCategory {
