@@ -120,7 +120,10 @@ function updateTheLeaderBorder() {
     // leaderBoardArray.push(currentPlayer)
     console.log(currentPlayer)
     console.log(leaderBoardArray)
-    document.getElementsByTagName("#theLeaderBoard > li").innerHTML = "leader here"
+    let x = document.createElement("LI")
+    let t = document.createTextNode(leaderBoardArray[0])
+    x.appendChild(t);
+    document.getElementById("leaderList").appendChild(x)
 }
 
 function gameOver() {
@@ -164,6 +167,7 @@ function compareRadioValue() {
     }
 }
 
+// ========== NEW GAME BUTTON ==========
 document.querySelector("#newGame").addEventListener("click", function newGame() {
     document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
     initializeAnswers()
@@ -183,10 +187,10 @@ function getPlayerAnswer() {
 
 document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
 
- // leaderBoardArray of arrays [playerName, correct answers, total questions]
- function getPlayerName() {
-    currentPlayer[0] = document.querySelector("#playerName").value
- }
+
+//  function getPlayerName() {
+//     currentPlayer[0] = document.querySelector("#playerName").value
+//  }
 
  document.getElementById("playerName").addEventListener("keyup", function(e) {
      if (e.key === 'Enter') {
@@ -195,8 +199,22 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
         } 
  });
 
-fillQuestionTrackerArray();
-chooseQuestion()
-placeCorrectAnswer()
-addBogusAnswers()
-loadAnswers()
+ function gameStart () {
+     let text1
+     currentPlayer[0] = prompt("Enter player name:", "Name")
+     if (currentPlayer[0] == null || currentPlayer == ""){
+         text = "User cancelled";
+     } else {
+        document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
+        document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
+        fillQuestionTrackerArray();
+        chooseQuestion()
+        placeCorrectAnswer()
+        addBogusAnswers()
+        loadAnswers()
+     }
+ }
+
+ gameStart()
+
+
