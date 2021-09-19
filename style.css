@@ -22,6 +22,12 @@ div {
     padding: 5px 10px 15px 30px;
 }
 
+#buttonRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 /* #triviaCard > input {
     grid-column-start: 1;

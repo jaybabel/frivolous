@@ -14,8 +14,14 @@
     <main>
         <!-- <label for="playerName">Player Name:</label>
         <input type="text" id="playerName" name="playerName"><br> -->
-        <br><button id="newGame">New Game</button><br><br>
-        <h3 id=playerName>Player name: </h3>  
+        <nav id="buttonRow">
+            <br><button id="newGame">New Game</button>
+            <button id="newPlayer">New Player</button>
+            <button id="changePlayer">Change Player</button>
+            <select name="playerNameList" id="playerNameList">
+            </select><br><br>
+        </nav>
+        <h3 id="playerName">Player name: </h3>  
         <h3 id="questionPrompt">Here's your question:</h3>
         <div id="triviaCard">
             <p id="question"></p>

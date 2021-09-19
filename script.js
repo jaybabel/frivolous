@@ -106,7 +106,7 @@ function updateScoreboard() {
     document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
-function updateTheLeaderBorder() {
+function updateTheLeaderBoard() {
     if (leaderBoardArray.length == 0) {
         leaderBoardArray.push(currentPlayer)
     } else {
@@ -132,7 +132,7 @@ function gameOver() {
     document.querySelector("#submitAnswer").removeEventListener("click", getPlayerAnswer);
     currentPlayer[1] = playerScore + + currentPlayer[1] 
     currentPlayer[2] = questionCount + + currentPlayer[2]
-    updateTheLeaderBorder()
+    updateTheLeaderBoard()
 }
 
 function nextQuestion() {
@@ -181,6 +181,8 @@ document.querySelector("#newGame").addEventListener("click", function newGame() 
     updateScoreboard()
 })
 
+document.querySelector("#newPlayer").addEventListener("click", gameStart)
+
 function getPlayerAnswer() {
     compareRadioValue()
 }
@@ -192,12 +194,12 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
 //     currentPlayer[0] = document.querySelector("#playerName").value
 //  }
 
- document.getElementById("playerName").addEventListener("keyup", function(e) {
-     if (e.key === 'Enter') {
-         getPlayerName()
-         document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
-        } 
- });
+//  document.getElementById("playerName").addEventListener("keyup", function(e) {
+//      if (e.key === 'Enter') {
+//          getPlayerName()
+//          document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
+//         } 
+//  });
 
  function gameStart () {
      let text1
@@ -207,7 +209,13 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
      } else {
         document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
         document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
-        fillQuestionTrackerArray();
+        // populate playerNameList
+            let selectList = document.getElementById("playerNameList")
+            let option = document.createElement("option")
+            option.value = currentPlayer[0]
+            option.text = currentPlayer[0]
+            selectList.appendChild(option)
+        fillQuestionTrackerArray()
         chooseQuestion()
         placeCorrectAnswer()
         addBogusAnswers()
