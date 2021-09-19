@@ -14,13 +14,23 @@
     <main>
         <!-- <label for="playerName">Player Name:</label>
         <input type="text" id="playerName" name="playerName"><br> -->
-        <nav id="buttonRow">
-            <br><button id="newGame">New Game</button>
-            <button id="newPlayer">New Player</button>
-            <button id="changePlayer">Change Player</button>
-            <select name="playerNameList" id="playerNameList">
-            </select><br><br>
-        </nav>
+        <div id="buttonRow">
+            <br><button id="btnNewGame">New Game</button>
+            <button id="btnNewPlayer">New Player</button>
+            <div id="grpChangePlayer">
+                <select name="playerNameList" id="playerNameList"></select>
+                <button id="btnChangePlayer">Change Player</button>
+            </div>
+            <div id="grpCategory">
+                <p>Category: </p>
+                <select name="categoryList" id="categoryList">
+                    <option value="music">Music</option>            
+                    <option value="movieQuotes">Movie Quotes</option>  
+                    <option value="authors">Authors</option>
+                </select>
+            </div>  
+                <br><br>
+        </div>
         <h3 id="playerName">Player name: </h3>  
         <h3 id="questionPrompt">Here's your question:</h3>
         <div id="triviaCard">
@@ -34,7 +44,7 @@
             <input type="radio" id="answerD" name="answer" value="3">
             <label for="answerD" id="ansD"></label>
         </div>
-        <br><button id="submitAnswer">Submit Answer</button><br><br>
+        <br><button id="btnSubmitAnswer">Submit Answer</button><br><br>
         <div id="result"></div><br>
         <div id="scoreboard">
             <h1 id="currentScore"></h1>

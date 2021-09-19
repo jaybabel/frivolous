@@ -129,7 +129,7 @@ function updateTheLeaderBoard() {
 function gameOver() {
     questionCount ++
     updateScoreboard()
-    document.querySelector("#submitAnswer").removeEventListener("click", getPlayerAnswer);
+    document.querySelector("#btnSubmitAnswer").removeEventListener("click", getPlayerAnswer);
     currentPlayer[1] = playerScore + + currentPlayer[1] 
     currentPlayer[2] = questionCount + + currentPlayer[2]
     updateTheLeaderBoard()
@@ -150,7 +150,6 @@ function nextQuestion() {
     }
 }
 
-
 function compareRadioValue() {
     let ele = document.getElementsByName('answer');
     let buttonSelection;
@@ -167,46 +166,20 @@ function compareRadioValue() {
     }
 }
 
-// ========== NEW GAME BUTTON ==========
-document.querySelector("#newGame").addEventListener("click", function newGame() {
-    document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
-    initializeAnswers()
-    fillQuestionTrackerArray()
-    chooseQuestion()
-    placeCorrectAnswer()
-    addBogusAnswers()
-    loadAnswers()
-    playerScore = 0
-    questionCount = 0
-    updateScoreboard()
-})
-
-document.querySelector("#newPlayer").addEventListener("click", gameStart)
+function changePlayer (){
+    console.log("Change Player")
+}
 
 function getPlayerAnswer() {
     compareRadioValue()
 }
 
-document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswer);
-
-
-//  function getPlayerName() {
-//     currentPlayer[0] = document.querySelector("#playerName").value
-//  }
-
-//  document.getElementById("playerName").addEventListener("keyup", function(e) {
-//      if (e.key === 'Enter') {
-//          getPlayerName()
-//          document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
-//         } 
-//  });
-
- function gameStart () {
-     let text1
-     currentPlayer[0] = prompt("Enter player name:", "Name")
-     if (currentPlayer[0] == null || currentPlayer == ""){
-         text = "User cancelled";
-     } else {
+function gameStart () {
+    let text1
+    currentPlayer[0] = prompt("Enter player name:", "Name")
+    if (currentPlayer[0] == null || currentPlayer == ""){
+        text1 = "User cancelled";
+    } else {
         document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
         document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
         // populate playerNameList
@@ -220,9 +193,32 @@ document.getElementById("submitAnswer").addEventListener("click", getPlayerAnswe
         placeCorrectAnswer()
         addBogusAnswers()
         loadAnswers()
-     }
- }
+    }
+}
 
- gameStart()
+// =============== NEW GAME BUTTON =============== 
+document.querySelector("#btnNewGame").addEventListener("click", function newGame() {
+    document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
+    initializeAnswers()
+    fillQuestionTrackerArray()
+    chooseQuestion()
+    placeCorrectAnswer()
+    addBogusAnswers()
+    loadAnswers()
+    playerScore = 0
+    questionCount = 0
+    updateScoreboard()
+})
+
+// =============== NEW PLAYER BUTTON =============== 
+document.querySelector("#btnNewPlayer").addEventListener("click", gameStart)
+
+// =============== CHANGE PLAYER BUTTON =============== 
+document.querySelector("#btnChangePlayer").addEventListener("click", changePlayer)
+
+// =============== SUBMIT ANSWER BUTTON =============== 
+document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
+
+gameStart()
 
 
