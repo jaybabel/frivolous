@@ -16,7 +16,7 @@ questionsArray = [
         ["Band that had Clapton, Page, and Beck", "The Yardbirds"],
         ["Song written by Bob Dylan", "Quinn the Eskimo"],
         ["Number one single of all time.", "White Christmas"],
-        ["q1", "q1"],
+        ["First hit by One Direction", "What Makes You Beautiful"],
         ["Previous band of BTO founder.", "The Guess Who"]
     ],
 //movieQuotesArray
@@ -25,17 +25,17 @@ questionsArray = [
         ["Pull yourself together man. You're going into the forest afterall. You've got to keep your wits about you", "Harry Potter and the Sorcerer's Stone"], 
         ["This town needs an enema!", "Batman"], 
         ["I know you. You're Dillon. The famous bouncer.", "Roadhouse"], 
-        ["quote a", "movie a"],
-        ["quote b", "movie b"],
-        ["quote c", "movie c"],
-        ["quote d", "movie d"],
-        ["quote e", "movie e"],
-        ["quote f", "movie f"],
-        ["quote g", "movie g"],
-        ["quote h", "movie h"],
-        ["quote i", "movie i"],
-        ["quote j", "movie j"],
-        ["They're all gone. Lucky Ned Pepper. Gone. Your fifty dollar gold piece. Gone. Bottle of whickey taken in as evidence. Gone. All gone.", "True Grit"]
+        ["I turn on the TV and you're robbing a bank? My god Sonny! I don't even know you anymore.", "Dog Day Afternoon"],
+        ["You've got to ask yourself one question, do I feel lucky? Well, do you punk?", "Dirty Harry"],
+        ["Go ahead. Make my day.", "Sudden Impact"],
+        ["Hey! I'm walkin' here! I'm walkin' here!", "Midnight Cowboy"],
+        ["We don't need no stinking badges!", "The Treasure of the Sierra Madre"],
+        ["You're killing me Smalls!", "The Sandlot"],
+        ["Straight up or draped over the saddle. Either one.", "Joe Kid"],
+        ["What we've got here is a failure to communicate.", "Cool Hand Luke"],
+        ["Morons. I've got morons on my team. Nobody is going to rob us going down the mountain. We have got no money going down the mountain.", "Butch Cassidy and the Sundance Kid"],
+        ["Made it, Ma! Top of the world!", "White Heat"],
+        ["They're all gone. Lucky Ned Pepper. Gone. Your fifty dollar gold piece. Gone. Bottle of whiskey taken in as evidence. Gone. All gone.", "True Grit"]
     ], 
 //const authorsArray
     [
@@ -49,10 +49,10 @@ questionsArray = [
         ["The Time Machine", "H.G. Wells"], 
         ["Wuthering Heights", "Emily Bronte"], 
         ["Jane Eyre", "Charlotte Bronte"], 
-        ["Book a", "Author a"],
-        ["Book b", "Author b"],
-        ["Book c", "Author c"],
-        ["Book d", "Author d"],
+        ["We are kept keen on the grindstone of pain and necessity.", "H.G. Wells"],
+        ["We must tend our garden.", "Voltaire"],
+        ["Abandon all hope, ye who enter here.", "Dante Alighieri"],
+        ["There is a luxury in self-reproach. When we blame ourselves we feel that no one else has a right to blame us.", "Oscar Wilde"],
         ["Great Expectations", "Charles Dickens"]
     ]
 ]
@@ -80,8 +80,6 @@ let categoryChoice = 0
 function fillQuestionTrackerArray() {
     let i = 0
     rQ = Math.floor(Math.random()*questionArrayLength)
-console.log(questionArrayLength)
-console.log("rQ = : ", rQ)
     while (i < 11) {
         if (!questionTrackerArray.includes(rQ)) {
             questionTrackerArray[i] = rQ
@@ -95,17 +93,13 @@ console.log("rQ = : ", rQ)
 
 // pop question from the list of 10 random questions
 function chooseQuestion() {
-console.log("question tracker array jsut before loading current Question: ", questionTrackerArray)
     currentQuestion = questionTrackerArray.pop();
-console.log('currentQuestion', currentQuestion)
     document.getElementById("question").innerHTML = questionsArray[categoryChoice][currentQuestion][0]
 }
 
 // randomly place correct answer
 function placeCorrectAnswer() {
     correctAnswer = Math.floor(Math.random()*4)
-
-    //   answersArray[correctAnswer] = questionsArray[categoryChoice][currentQuestion][1]
     answersArray[correctAnswer] = questionsArray[categoryChoice][currentQuestion][1]
 }
 
@@ -162,10 +156,6 @@ function updateTheLeaderBoard() {
         }
     }
     
-    // leaderBoardArray.push(currentPlayer)
-    //console.log(currentPlayer)
-    //console.log('leader board length after', leaderBoardArray.length)
-    //console.log(leaderBoardArray)
     let x = document.createElement("LI")
     let t
     for (i = 0; i < leaderBoardArray.length; i++) {
@@ -251,12 +241,7 @@ function gameStart () {
 function getCategory() {
     selectElement = document.querySelector("#categoryList");          
     categoryChoice = selectElement.value;
-
-console.log('category select: ', categoryChoice)
-
 }
-
-
 
 // =============== NEW GAME BUTTON =============== 
 document.querySelector("#btnNewGame").addEventListener("click", function newGame() {
@@ -287,5 +272,3 @@ document.querySelector("#btnChangePlayer").addEventListener("click", changePlaye
 document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
 
 gameStart()
-
-
