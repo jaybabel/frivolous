@@ -58,8 +58,8 @@ questionsArray = [
 ]
 
 //const 10_questionsArrayTemplate = [["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""]]
+
 const answersArray = ["", "", "", ""]
-//const questionTrackerArray = [["", ""], ["", ""], ["", ""], ["", ""], ["",""], ["", ""], ["", ""], ["", ""], ["", ""], ["",""]]
 const questionTrackerArray = ["", "", "", "", "", "", "", "", "", ""]
 const questionArrayLength = 15
 
@@ -74,7 +74,7 @@ let maxQuestions = 5
 let rQ
 let currentQuestion
 let correctAnswer
-let categoryChoice = 1
+let categoryChoice = 0
 
 // select 10 random question indexes - just numbers, doesn't matter what question category
 function fillQuestionTrackerArray() {
@@ -247,11 +247,23 @@ function gameStart () {
     }
 }
 
+// =============== SELECT CATEGORY DROPDOWN =============== 
+function getCategory() {
+    selectElement = document.querySelector("#categoryList");          
+    categoryChoice = selectElement.value;
+
+console.log('category select: ', categoryChoice)
+
+}
+
+
+
 // =============== NEW GAME BUTTON =============== 
 document.querySelector("#btnNewGame").addEventListener("click", function newGame() {
     document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
     document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
     document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
+    getCategory()
     initializeAnswers()
     fillQuestionTrackerArray()
     chooseQuestion()
