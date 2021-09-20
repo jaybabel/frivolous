@@ -22,7 +22,7 @@ questionsArray = [
 //movieQuotesArray
     [
         ["Well doc, I imagine you wanna know what makes ol' Jack tick.", "One Flew Over The Cuckoo's Nest"], 
-        ["Pull yourself together man. You're going into the forest afterall. You've got to keep your wits about you", "Harry Potter and the Sorcerer's Stone"], 
+        ["Pull yourself together man. You're going into the forest afterall. You've got to keep your wits about you.", "Harry Potter and the Sorcerer's Stone"], 
         ["This town needs an enema!", "Batman"], 
         ["I know you. You're Dillon. The famous bouncer.", "Roadhouse"], 
         ["I turn on the TV and you're robbing a bank? My god Sonny! I don't even know you anymore.", "Dog Day Afternoon"],
@@ -46,8 +46,8 @@ questionsArray = [
         ["Politics", "Aristotle"], 
         ["Republic", "Plato"], 
         ["Free to Choose", "Milton Friedman"], 
-        ["The Time Machine", "H.G. Wells"], 
-        ["Wuthering Heights", "Emily Bronte"], 
+        ["A Study in Scarlet", "Arthur Conan Doyle"], 
+        ["Wuthering Heights", "Emily Bronte"],
         ["Jane Eyre", "Charlotte Bronte"], 
         ["We are kept keen on the grindstone of pain and necessity.", "H.G. Wells"],
         ["We must tend our garden.", "Voltaire"],
@@ -133,8 +133,9 @@ function initializeAnswers() {
     for (let i = 0; i < 4; i++) {
         answersArray[i] = ""
     }
-    // uncheck radio button
-    let radio = document.querySelector('input[type=radio][name=answer]:checked');
+    // uncheck radio button  
+    //let radio = document.querySelector('input[type=radio][name=answer]:checked');
+    let radio = document.querySelector('input[type=radio]:checked');
     radio.checked = false;
 }
 
@@ -144,44 +145,59 @@ function updateScoreboard() {
 }
 
 function updateTheLeaderBoard() {
-console.log(leaderBoardArray.length, currentPlayer, leaderBoardArray)
-// leaderBoardArray.push(currentPlayer)
-// console.log(leaderBoardArray.length)
-
-    if (!leaderBoardArray.length) {
-        leaderBoardArray.push(currentPlayer)
-console.log("first push: ", leaderBoardArray.length, leaderBoardArray)
-    } else {
-console.log("in else: ", leaderBoardArray.length)
-        for(let i = 0; i < leaderBoardArray.length; i++) {
-console.log(leaderBoardArray, currentPlayer)
-            if (leaderBoardArray[i][0] === currentPlayer[0]) {
-                leaderBoardArray[i][1] += currentPlayer[1]// + + leaderBoardArray[i][1] 
-                leaderBoardArray[i][2] += currentPlayer[2]// + + leaderBoardArray[i][2]   
-console.log(leaderBoardArray)
+        let addToLeaderboard = [...currentPlayer];
+        // IF LEADERBOARD IS EMPTY
+        if (!leaderBoardArray.length) {
+          leaderBoardArray.push(addToLeaderboard);
+        } else {
+          for (let i = 0; i < leaderBoardArray.length; i++) {
+            // IF CURRENT PLAYER IS IN LEADERBOARD ALREADY
+            console.log(leaderBoardArray[i][0], addToLeaderboard[0], i)
+          //  let s = [...leaderBoardArray[i][0]]
+            let nameInBoard = [...leaderBoardArray[i][0]]
+            let nameToAdd = addToLeaderboard[0]
+            console.log('the variables: ', nameInBoard, nameToAdd)
+            if (leaderBoardArray[i][0] == addToLeaderboard[0]) {
+         //   if (nameInBoard === nameToAdd) {
+                console.log('name match')
+                leaderBoardArray[i][1] += addToLeaderboard[1];
+                leaderBoardArray[i][2] += addToLeaderboard[2];
+                console.log(leaderBoardArray[i][1], addToLeaderboard[1])
+                console.log(leaderBoardArray[i][2], addToLeaderboard[2])
             } else {
-                leaderBoardArray.push(currentPlayer)
+            // IF CURRENT PLAYER IS NOT IN LEADERBOARD
+            leaderBoardArray.push(addToLeaderboard);
             }
+
         }
     }
-    // =========================== Add Leaders to Ordered List ========================
-console.log(leaderBoardArray)
-    let x = document.createElement("LI")
-    let t
-    for (i = 0; i < leaderBoardArray.length; i++) {
+    console.log('the leader board array: ', leaderBoardArray)
+// ================= Check for number of child elements in OL =====================   
+let c = document.getElementById("leaderList").childElementCount
+console.log('OL child elements: ', c)
+// ================= remove Leaders (from StackOverflow) ====================
+if (c) {
+    let lis = document.querySelectorAll('#leaderList li')
+    for (let i = 0; li=lis[i]; i++) {
+        li.parentNode.removeChild(li)
+    }
+}
+// =========================== Add Leaders to Ordered List ========================
+    for (let i = 0; i < leaderBoardArray.length; i++) {
+        let x = document.createElement("LI")
+        let t
         t = document.createTextNode(leaderBoardArray[i])
         x.appendChild(t);
         document.getElementById("leaderList").appendChild(x)
     }
-console.log(leaderBoardArray.length)
 }
 
 function gameOver() {
     questionCount ++
     updateScoreboard()
     document.querySelector("#btnSubmitAnswer").removeEventListener("click", getPlayerAnswer);
-    currentPlayer[1] = playerScore //+ + currentPlayer[1] 
-    currentPlayer[2] = questionCount //+ + currentPlayer[2]
+    currentPlayer[1] = playerScore
+    currentPlayer[2] = questionCount
     updateTheLeaderBoard()
 }
 
@@ -220,7 +236,6 @@ function getPlayerAnswer() {
     compareRadioValue()
 }
 
-// ============================= major code changes September 20 ====================
 function addNewPlayer() {
     let text1
     currentPlayer[0] = prompt("Enter player name:", "Name")
@@ -256,8 +271,6 @@ function newGame() {
     currentPlayer[2] = 0
     updateScoreboard()
 }
-// ==========================end major code changes September 20 =======================
-
 
 // =============== SELECT CATEGORY DROPDOWN =============== 
 function getCategory() {
@@ -270,8 +283,6 @@ function changePlayer (){
     selectElement = document.querySelector("#playerNameList");          
     currentPlayer[0] = selectElement.value;
     newGame();
-    //    console.log("Change Player")
-    //currentPlayer[0] = document.getElementById("playerNameList").value
 }
 
 // =============== NEW GAME BUTTON =============== 

@@ -6,8 +6,9 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 30pt;
-    color: burlywood;
+    font-size: 32pt;
+    font-style: italic;
+    color: rgb(247, 237, 149);
 }
 
 p {
@@ -19,6 +20,10 @@ div {
 }
 
 #triviaCard {
+    padding: 5px 10px 15px 30px;
+}
+
+#scoreboard {
     padding: 5px 10px 15px 30px;
 }
 
