@@ -216,17 +216,12 @@ function compareRadioValue() {
     }
 }
 
-function changePlayer (){
-//    console.log("Change Player")
-    currentPlayer[0] = document.getElementById("playerNameList").value
-    console.log(currentPlayer[0])
-}
-
 function getPlayerAnswer() {
     compareRadioValue()
 }
 
-function gameStart () {
+// ============================= major code changes September 20 ====================
+function addNewPlayer() {
     let text1
     currentPlayer[0] = prompt("Enter player name:", "Name")
     if (currentPlayer[0] == null || currentPlayer == ""){
@@ -234,28 +229,17 @@ function gameStart () {
     } else {
         document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
         document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
-        // populate playerNameList
+        // ====== populate playerNameList ======
             let selectList = document.getElementById("playerNameList")
             let option = document.createElement("option")
             option.value = currentPlayer[0]
             option.text = currentPlayer[0]
             selectList.appendChild(option)
-        fillQuestionTrackerArray()
-        chooseQuestion()
-        placeCorrectAnswer()
-        addBogusAnswers()
-        loadAnswers()
     }
+    newGame()
 }
 
-// =============== SELECT CATEGORY DROPDOWN =============== 
-function getCategory() {
-    selectElement = document.querySelector("#categoryList");          
-    categoryChoice = selectElement.value;
-}
-
-// =============== NEW GAME BUTTON =============== 
-document.querySelector("#btnNewGame").addEventListener("click", function newGame() {
+function newGame() {
     document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
     document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
     document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
@@ -271,15 +255,61 @@ document.querySelector("#btnNewGame").addEventListener("click", function newGame
     currentPlayer[1] = 0
     currentPlayer[2] = 0
     updateScoreboard()
-})
+}
+// ==========================end major code changes September 20 =======================
+
+
+// =============== SELECT CATEGORY DROPDOWN =============== 
+function getCategory() {
+    selectElement = document.querySelector("#categoryList");          
+    categoryChoice = selectElement.value;
+}
+
+// =============== SELECT PLAYER DROPDOWN =============== 
+function changePlayer (){
+    selectElement = document.querySelector("#playerNameList");          
+    currentPlayer[0] = selectElement.value;
+    newGame();
+    //    console.log("Change Player")
+    //currentPlayer[0] = document.getElementById("playerNameList").value
+}
+
+// =============== NEW GAME BUTTON =============== 
+document.querySelector("#btnNewGame").addEventListener("click", newGame)
 
 // =============== NEW PLAYER BUTTON =============== 
-document.querySelector("#btnNewPlayer").addEventListener("click", gameStart)
+document.querySelector("#btnNewPlayer").addEventListener("click", function newPlayer(){
+     addNewPlayer()
+})
 
 // =============== CHANGE PLAYER BUTTON =============== 
 document.querySelector("#btnChangePlayer").addEventListener("click", changePlayer)
 
 // =============== SUBMIT ANSWER BUTTON =============== 
 document.getElementById("btnSubmitAnswer").addEventListener("click", getPlayerAnswer);
+
+
+// =================== START THE GAME =================== 
+function gameStart () {
+    let text1
+    currentPlayer[0] = prompt("Enter player name:", "Name")
+    if (currentPlayer[0] == null || currentPlayer == ""){
+        text1 = "User cancelled";
+    } else {
+        document.getElementById("playerName").innerHTML = "Player Name: "+currentPlayer[0]
+        document.getElementById("questionPrompt").innerHTML = "Here's your question "+currentPlayer[0]+":"
+        // ====== populate playerNameList ======
+            let selectList = document.getElementById("playerNameList")
+            let option = document.createElement("option")
+            option.value = currentPlayer[0]
+            option.text = currentPlayer[0]
+            selectList.appendChild(option)
+        fillQuestionTrackerArray()
+        chooseQuestion()
+        placeCorrectAnswer()
+        addBogusAnswers()
+        loadAnswers()
+    }
+}
 
 gameStart()
