@@ -63,7 +63,7 @@ const answersArray = ["", "", "", ""]
 const questionTrackerArray = ["", "", "", "", "", "", "", "", "", ""]
 const questionArrayLength = 15
 
-  // leaderBoardArray of arrays [playerName, correct answers, total questions]
+// leaderBoardArray of arrays [playerName, correct answers, total questions]
 const leaderBoardArray = []
 const currentPlayer = ["", "", ""]
 
@@ -144,18 +144,28 @@ function updateScoreboard() {
 }
 
 function updateTheLeaderBoard() {
-    if (leaderBoardArray.length == 0) {
-       leaderBoardArray.push(currentPlayer)
-    }
-    for(i = 0; i < leaderBoardArray.length; i++) {
-        if (!leaderBoardArray[0].includes(currentPlayer[0])){
-            leaderBoardArray.push(currentPlayer)
-        } else if (leaderBoardArray[i, 0] === currentPlayer[0]) {
-            leaderBoardArray[i, 1] = currentPlayer[1] + + leaderBoardArray[i, 1] 
-            leaderBoardArray[i, 2] = currentPlayer[2] + + leaderBoardArray[i, 2]            
+console.log(leaderBoardArray.length, currentPlayer, leaderBoardArray)
+// leaderBoardArray.push(currentPlayer)
+// console.log(leaderBoardArray.length)
+
+    if (!leaderBoardArray.length) {
+        leaderBoardArray.push(currentPlayer)
+console.log("first push: ", leaderBoardArray.length, leaderBoardArray)
+    } else {
+console.log("in else: ", leaderBoardArray.length)
+        for(let i = 0; i < leaderBoardArray.length; i++) {
+console.log(leaderBoardArray, currentPlayer)
+            if (leaderBoardArray[i][0] === currentPlayer[0]) {
+                leaderBoardArray[i][1] += currentPlayer[1]// + + leaderBoardArray[i][1] 
+                leaderBoardArray[i][2] += currentPlayer[2]// + + leaderBoardArray[i][2]   
+console.log(leaderBoardArray)
+            } else {
+                leaderBoardArray.push(currentPlayer)
+            }
         }
     }
-    
+    // =========================== Add Leaders to Ordered List ========================
+console.log(leaderBoardArray)
     let x = document.createElement("LI")
     let t
     for (i = 0; i < leaderBoardArray.length; i++) {
@@ -163,14 +173,15 @@ function updateTheLeaderBoard() {
         x.appendChild(t);
         document.getElementById("leaderList").appendChild(x)
     }
+console.log(leaderBoardArray.length)
 }
 
 function gameOver() {
     questionCount ++
     updateScoreboard()
     document.querySelector("#btnSubmitAnswer").removeEventListener("click", getPlayerAnswer);
-    currentPlayer[1] = playerScore + + currentPlayer[1] 
-    currentPlayer[2] = questionCount + + currentPlayer[2]
+    currentPlayer[1] = playerScore //+ + currentPlayer[1] 
+    currentPlayer[2] = questionCount //+ + currentPlayer[2]
     updateTheLeaderBoard()
 }
 
