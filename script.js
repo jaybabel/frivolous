@@ -155,18 +155,16 @@ function updateTheLeaderBoard() {
             while (leaderBoardArray.length === l) {
                 let i = 0
                 // IF CURRENT PLAYER IS IN LEADERBOARD ALREADY
-console.log(leaderBoardArray[i][0], addToLeaderboard[0], i)
-                let nameInBoard = [...leaderBoardArray[i][0]]
-                let nameToAdd = addToLeaderboard[0]
-console.log('the variables: ', nameInBoard, nameToAdd)
+//                let nameInBoard = [...leaderBoardArray[i][0]]
+//                let nameToAdd = addToLeaderboard[i]
+console.log("leaderBoardArray i 0 = ", leaderBoardArray[i][0], "addToLeaderboard = ", addToLeaderboard[0])
                 if (leaderBoardArray[i][0] == addToLeaderboard[0]) {
-console.log('name match')
+console.log('is in the leaderBoardArray at: ', i)
                     leaderBoardArray[i][1] += addToLeaderboard[1];
                     leaderBoardArray[i][2] += addToLeaderboard[2];
-console.log(leaderBoardArray[i][1], addToLeaderboard[1])
-console.log(leaderBoardArray[i][2], addToLeaderboard[2])
                     l = 0  // allows while loop to exit if leader board length doesn't change
                 }  else if (addToLeaderboard in leaderBoardArray === false){
+console.log('addToLeaderboard in leaderBoardArray === false')
                     // IF CURRENT PLAYER IS NOT IN LEADERBOARD
                     leaderBoardArray.push(addToLeaderboard);
                 }
@@ -174,7 +172,6 @@ console.log(leaderBoardArray[i][2], addToLeaderboard[2])
             }
         
         }
-console.log('the leader board array: ', leaderBoardArray)
     // ================= remove Leaders (from StackOverflow) ====================
     let c = document.getElementById("leaderList").childElementCount
     if (c) {

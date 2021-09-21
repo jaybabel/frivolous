@@ -65,19 +65,3 @@ div {
     flex-direction: row;
     background-color: rgba(212, 14, 57, .003);
 }
-
-/* #triviaCard > input {
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    justify-items: start;
-}
-
-#triviaCard > label {
-    grid-column-start: 2;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
-    justify-items: center;
-} */
