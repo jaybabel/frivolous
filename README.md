@@ -1,6 +1,8 @@
 # frivolous
 SEI Project 1 - Trivia game
 
+https://ecstatic-bell-1867af.netlify.app/
+
 __The Bronze Plan__
 
   _Implemented_
