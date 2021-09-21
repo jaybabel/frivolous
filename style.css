@@ -2,13 +2,16 @@
 
 body {
     background-color: rgb(106, 150, 179);
+    background-image: url("https://images.all-free-download.com/images/graphicthumb/blue_abstract_background_310971.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1 {
     text-align: center;
     font-size: 32pt;
     font-style: italic;
-    color: rgb(247, 237, 149);
+    color: rgb(235, 224, 128);
 }
 
 p {
@@ -36,6 +39,7 @@ div {
     flex-direction: row;
     justify-content: space-between;
     background-color: rgb(212, 14, 57);
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/231/644/932/abstract-red-texture-hd-wallpaper-preview.jpg");
 }
 
  #btnNewGame {
@@ -53,13 +57,13 @@ div {
 #grpChangePlayer {
     display: flex;
     flex-direction: row;
-    background-color: rgb(212, 14, 57);
+    background-color: rgba(212, 14, 57, .003);
 }
 
 #grpCategory {
     display: flex;
     flex-direction: row;
-    background-color: rgb(212, 14, 57);
+    background-color: rgba(212, 14, 57, .003);
 }
 
 /* #triviaCard > input {

@@ -172,16 +172,15 @@ function updateTheLeaderBoard() {
         }
     }
     console.log('the leader board array: ', leaderBoardArray)
-// ================= Check for number of child elements in OL =====================   
-let c = document.getElementById("leaderList").childElementCount
-console.log('OL child elements: ', c)
+
 // ================= remove Leaders (from StackOverflow) ====================
-if (c) {
-    let lis = document.querySelectorAll('#leaderList li')
-    for (let i = 0; li=lis[i]; i++) {
-        li.parentNode.removeChild(li)
+let c = document.getElementById("leaderList").childElementCount
+    if (c) {
+        let lis = document.querySelectorAll('#leaderList li')
+        for (let i = 0; li=lis[i]; i++) {
+            li.parentNode.removeChild(li)
+        }
     }
-}
 // =========================== Add Leaders to Ordered List ========================
     for (let i = 0; i < leaderBoardArray.length; i++) {
         let x = document.createElement("LI")
