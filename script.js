@@ -145,6 +145,25 @@ function updateScoreboard() {
     document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
+function displayLeaderBoard() {
+        // ================= remove Leaders (from StackOverflow) ====================
+        let c = document.getElementById("leaderList").childElementCount
+        if (c) {
+            let lis = document.querySelectorAll('#leaderList li')
+            for (let i = 0; li=lis[i]; i++) {
+                li.parentNode.removeChild(li)
+            }
+        }
+        // =========================== Add Leaders to Ordered List ========================
+        for (let i = 0; i < leaderBoardArray.length; i++) {
+            let x = document.createElement("LI")
+            let t
+            t = document.createTextNode(leaderBoardArray[i])
+            x.appendChild(t);
+            document.getElementById("leaderList").appendChild(x)
+        }
+}
+
 function updateTheLeaderBoard() {
         let addToLeaderboard = [...currentPlayer];
         // IF LEADERBOARD IS EMPTY
@@ -171,22 +190,7 @@ function updateTheLeaderBoard() {
                 leaderBoardArray.push(addToLeaderboard);
             }
         }
-    // ================= remove Leaders (from StackOverflow) ====================
-    let c = document.getElementById("leaderList").childElementCount
-    if (c) {
-        let lis = document.querySelectorAll('#leaderList li')
-        for (let i = 0; li=lis[i]; i++) {
-            li.parentNode.removeChild(li)
-        }
-    }
-    // =========================== Add Leaders to Ordered List ========================
-    for (let i = 0; i < leaderBoardArray.length; i++) {
-        let x = document.createElement("LI")
-        let t
-        t = document.createTextNode(leaderBoardArray[i])
-        x.appendChild(t);
-        document.getElementById("leaderList").appendChild(x)
-    }
+    displayLeaderBoard()
 }
 
 function gameOver() {
