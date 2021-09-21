@@ -2,12 +2,12 @@
 __SEI Project 1 - Trivia game__
 ![Screen Shot 2021-09-21 at 9 57 50 AM](https://user-images.githubusercontent.com/8105789/134195932-ca2c7cc2-3180-4fce-b4f0-37bc389d25a1.png)
 
-frivolous is a web-based trivia game.  The selects random questions from three different categories (music, movies, and authors).  The questions are drawn from arrays defined in the Javascript.  The index for the selected question is placed in an array stack. The corresponding answer is randomly placed in one of four elements in an answer array.  The remaining three elements are populated with random answers from the same question category (i.e. music questions only have music answers).
+frivolous is a web-based trivia game.  Written in HTML, CSS and Javascript, frivolous selects random questions from three different categories (music, movies, and authors).  The questions are drawn from arrays defined in the Javascript.  The index for the selected question is placed in an array stack. The corresponding answer is randomly placed in one of four elements in an answer array.  The remaining three elements are populated with random answers from the same question category (i.e. music questions only have music answers).
 
 __Why not use an API?__ While I had hoped to implement a trivia API as an extra option in the gold plan, I was unable to get to that.  My first goal was to create a framework where I could control the questions and answers.  By having my own verbiage, I can use much of the code for future applications that might require dialog (e.g. a study guide for my daughter, dialog in a role playing game).
 
 __Quirks__
-* Although the game chooses a random category to begin, the category menu is not updated to reflect that.  It always shows the first item on the list, Music.
+* If the game is set to choose a random category to begin, the category menu is not updated to reflect that.  It always shows the first item on the list, Music. As a workaround, default category is set to Music.
 * The game needs additional visual to indicate when all questions have been answered in the current game.
 * If the category is changed after a new game has been initialized and the first question is presented, the category change is not effective until subsequent questions are presented.
 * Player name in the dropdown window is not updated to reflect current player when a new player is added.
