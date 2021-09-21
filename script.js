@@ -74,7 +74,8 @@ let maxQuestions = 5
 let rQ
 let currentQuestion
 let correctAnswer
-let categoryChoice = 0
+let categoryChoice = Math.floor(Math.random()*2)
+console.log('category: ', categoryChoice)
 
 // select 10 random question indexes - just numbers, doesn't matter what question category
 function fillQuestionTrackerArray() {
@@ -150,38 +151,39 @@ function updateTheLeaderBoard() {
         if (!leaderBoardArray.length) {
           leaderBoardArray.push(addToLeaderboard);
         } else {
-          for (let i = 0; i < leaderBoardArray.length; i++) {
-            // IF CURRENT PLAYER IS IN LEADERBOARD ALREADY
-            console.log(leaderBoardArray[i][0], addToLeaderboard[0], i)
-          //  let s = [...leaderBoardArray[i][0]]
-            let nameInBoard = [...leaderBoardArray[i][0]]
-            let nameToAdd = addToLeaderboard[0]
-            console.log('the variables: ', nameInBoard, nameToAdd)
-            if (leaderBoardArray[i][0] == addToLeaderboard[0]) {
-         //   if (nameInBoard === nameToAdd) {
-                console.log('name match')
-                leaderBoardArray[i][1] += addToLeaderboard[1];
-                leaderBoardArray[i][2] += addToLeaderboard[2];
-                console.log(leaderBoardArray[i][1], addToLeaderboard[1])
-                console.log(leaderBoardArray[i][2], addToLeaderboard[2])
-            } else {
-            // IF CURRENT PLAYER IS NOT IN LEADERBOARD
-            leaderBoardArray.push(addToLeaderboard);
+            let l = leaderBoardArray.length
+            while (leaderBoardArray.length === l) {
+                let i = 0
+                // IF CURRENT PLAYER IS IN LEADERBOARD ALREADY
+console.log(leaderBoardArray[i][0], addToLeaderboard[0], i)
+                let nameInBoard = [...leaderBoardArray[i][0]]
+                let nameToAdd = addToLeaderboard[0]
+console.log('the variables: ', nameInBoard, nameToAdd)
+                if (leaderBoardArray[i][0] == addToLeaderboard[0]) {
+console.log('name match')
+                    leaderBoardArray[i][1] += addToLeaderboard[1];
+                    leaderBoardArray[i][2] += addToLeaderboard[2];
+console.log(leaderBoardArray[i][1], addToLeaderboard[1])
+console.log(leaderBoardArray[i][2], addToLeaderboard[2])
+                    l = 0  // allows while loop to exit if leader board length doesn't change
+                }  else if (addToLeaderboard in leaderBoardArray === false){
+                    // IF CURRENT PLAYER IS NOT IN LEADERBOARD
+                    leaderBoardArray.push(addToLeaderboard);
+                }
+                i++
             }
-
+        
         }
-    }
-    console.log('the leader board array: ', leaderBoardArray)
-
-// ================= remove Leaders (from StackOverflow) ====================
-let c = document.getElementById("leaderList").childElementCount
+console.log('the leader board array: ', leaderBoardArray)
+    // ================= remove Leaders (from StackOverflow) ====================
+    let c = document.getElementById("leaderList").childElementCount
     if (c) {
         let lis = document.querySelectorAll('#leaderList li')
         for (let i = 0; li=lis[i]; i++) {
             li.parentNode.removeChild(li)
         }
     }
-// =========================== Add Leaders to Ordered List ========================
+    // =========================== Add Leaders to Ordered List ========================
     for (let i = 0; i < leaderBoardArray.length; i++) {
         let x = document.createElement("LI")
         let t
