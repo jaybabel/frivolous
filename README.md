@@ -17,11 +17,25 @@ __Bug Alert: The Leader Board__
 
 As of this writing, the Leader Board is only partially implemented.  There is a bug updating scores for players after the first player.  Scores for the first player accumulate with each round and the entry on the board is updated accordingly.  Scores for subsequent players do not accumulate.  Instead, an additional entry with the player score from the latest round is added to the board.
 
-The Leader Board has been particularly difficult to implement.  The first problem encountered was with adding the results from each round.  The Leader Board array is an array of arrays.  Each element in the leader board array (leaderBoardArray) holds a player name, the number of questions answered correctly, and the number of questions attempted.  Whenever I attempted to add a second element, it would overwrite the first.  To successfully add arrays as elements to another array, I had to use _Spread syntax(...)_ as shown below.
+The Leader Board has been particularly difficult to implement.  The first problem encountered was with adding the results from each round.  The Leader Board array is an array of arrays.  Each element in the leader board array (leaderBoardArray) holds a player name, the number of questions answered correctly, and the number of questions attempted.  Here are the array declarations from the code:
+
+```
+// leaderBoardArray of arrays [playerName, correct answers, total questions]
+const leaderBoardArray = []
+const currentPlayer = ["", "", ""]
+```
+
+When a round is started, the currentPlayer array is initialized with the player name in the first element and zeros in the second and third.  When the round is completed the currentPlayer array contains the scoring as outline above.  The leader board function is called and the leaderBoardArray is updated with information from the currentPlayer array. If the player name is already in the leader board array, the new scores should be added to the existing scores. If the player is not in the leader board array, the player is added. 
+
+
+Initially, whenever I attempted to add a second element, it would overwrite the first.  To successfully add arrays as elements to another array, I had to use _Spread syntax(...)_ as shown below.
 
 ```
         let addToLeaderboard = [...currentPlayer];
 ```
+
+The current issue will likely be resolved by correcting the control loop(s) for updating the leader board array.
+
 
 # frivolous Online
 
