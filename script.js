@@ -74,7 +74,7 @@ let maxQuestions = 5
 let rQ
 let currentQuestion
 let correctAnswer
-let categoryChoice = Math.floor(Math.random()*2)
+let categoryChoice = 0
 console.log('category: ', categoryChoice)
 
 // select 10 random question indexes - just numbers, doesn't matter what question category
