@@ -2,7 +2,7 @@
 __SEI Project 1 - Trivia game__
 ![Screen Shot 2021-09-21 at 9 57 50 AM](https://user-images.githubusercontent.com/8105789/134195932-ca2c7cc2-3180-4fce-b4f0-37bc389d25a1.png)
 
-frivolous is a web-based trivia game.  The selects random questions from three different categories (music, movies, and authors).  The questions are drawn from arrays defined in the Javascript.  The index for the selected question is placed in an array stack. The corresponding answer is randomly placed in one of four elements in an answer array.  The remaining three elements are populated with random answers from the same question category (i.e. music questions only have music answers).
+frivolous is a web-based trivia game.  Written in HTML, CSS and Javascript, frivolous selects random questions from three different categories (music, movies, and authors).  The questions are drawn from arrays defined in the Javascript.  The index for the selected question is placed in an array stack. The corresponding answer is randomly placed in one of four elements in an answer array.  The remaining three elements are populated with random answers from the same question category (i.e. music questions only have music answers).
 
 __Why not use an API?__ While I had hoped to implement a trivia API as an extra option in the gold plan, I was unable to get to that.  My first goal was to create a framework where I could control the questions and answers.  By having my own verbiage, I can use much of the code for future applications that might require dialog (e.g. a study guide for my daughter, dialog in a role playing game).
 
