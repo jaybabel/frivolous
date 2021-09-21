@@ -70,7 +70,7 @@ const currentPlayer = ["", "", ""]
 let playerName
 let playerScore = 0
 let questionCount = 0
-let maxQuestions = 5
+let maxQuestions = 3
 let rQ
 let currentQuestion
 let correctAnswer
@@ -151,21 +151,25 @@ function updateTheLeaderBoard() {
         if (!leaderBoardArray.length) {
           leaderBoardArray.push(addToLeaderboard);
         } else {
-            let l = leaderBoardArray.length
-            let i = 0
-            while (leaderBoardArray.length === l) {
+            let y = 0
+            while (leaderBoardArray.length > y) {
                 // IF CURRENT PLAYER IS IN LEADERBOARD ALREADY
-                if (leaderBoardArray[i][0] == addToLeaderboard[0]) {
-                    leaderBoardArray[i][1] += addToLeaderboard[1];
-                    leaderBoardArray[i][2] += addToLeaderboard[2];
-                    l = 0  // allows while loop to exit if leader board length doesn't change
-                }  else if (addToLeaderboard in leaderBoardArray === false){
-                    // IF CURRENT PLAYER IS NOT IN LEADERBOARD
-                    leaderBoardArray.push(addToLeaderboard);
+                if (leaderBoardArray[y][0] === addToLeaderboard[0]) {
+                    leaderBoardArray[y][1] += addToLeaderboard[1];
+                    leaderBoardArray[y][2] += addToLeaderboard[2];
                 }
-                i++
+                y++
             }
-        
+            let x = leaderBoardArray.length
+            for (j = 0; j < leaderBoardArray.length; j++){
+                // IF CURRENT PLAYER IS NOT IN LEADERBOARD
+                if (addToLeaderboard[0] != leaderBoardArray[j][0]) {               
+                    x --
+                } 
+            } 
+            if (x === 0){
+                leaderBoardArray.push(addToLeaderboard);
+            }
         }
     // ================= remove Leaders (from StackOverflow) ====================
     let c = document.getElementById("leaderList").childElementCount
