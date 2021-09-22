@@ -146,22 +146,31 @@ function updateScoreboard() {
 }
 
 function gameFeedback() {
-    switch (playerScore / questionCount) {
+    //switch (playerScore / questionCount) {
+    switch ((playerScore) / (questionCount)) {
         case 1:
-            console.log("Wow! You sure do know a lot of unimportant stuff!")
-            alert("Great Score!")
+            document.getElementById("question").innerHTML = "*** Wow! You sure do know a lot of unimportant stuff! ***"
             break
         case .9:
-            console.log("Hey! That's pretty good.")
-            alert("Hey! That's pretty good.")
+            document.getElementById("question").innerHTML = "*** Great Score! ***"
             break
         case .8:
-            console.log("Not bad. Not bad at all")
-            alert("Not bad. Not bad at all")
+            document.getElementById("question").innerHTML = "*** Hey! That's pretty good. ***"
             break
+        case .7:
+            document.getElementById("question").innerHTML = "*** Not bad. Not bad at all. ***"
+            break
+        case .6:
+            document.getElementById("question").innerHTML = "*** Not that bad...I guess. ***"
+            break
+        case .5:
+            document.getElementById("question").innerHTML = "*** Kind of mediocre. ***"
+            break
+        case .4:
+            document.getElementById("question").innerHTML = "*** You can do better. ***"
+            break        
         default:
-            console.log("Keep trying.")
-            alert("Keep trying.")
+            document.getElementById("question").innerHTML = "*** Ouch! ***"
             break
     }
 //    
@@ -218,11 +227,11 @@ function updateTheLeaderBoard() {
 function gameOver() {
     questionCount ++
     updateScoreboard()
-    gameFeedback() 
     document.querySelector("#btnSubmitAnswer").removeEventListener("click", getPlayerAnswer);
     currentPlayer[1] = playerScore
     currentPlayer[2] = questionCount
     updateTheLeaderBoard()
+    gameFeedback()
 }
 
 function nextQuestion() {
