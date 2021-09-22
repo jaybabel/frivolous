@@ -190,6 +190,9 @@ function displayLeaderBoard() {
             let x  = leaderBoardArray[j][1] / leaderBoardArray[j][2]
             leaderBoardArray[j][3] = Math.round(x * 100) / 100
         }
+            leaderBoardArray.sort(function(a,b) {
+                return b[3]-a[3]
+            })
         for (let i = 0; i < leaderBoardArray.length; i++) {
             let x = document.createElement("LI")
             let t

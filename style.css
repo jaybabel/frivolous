@@ -32,7 +32,18 @@ div {
 
 #theLeaderBoard {
     padding: 5px 10px 15px 30px;
+    background: bottom;
 }
+
+#leaderList {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+}
+
+ol#leaderList {
+    background: rgba(163, 199, 233, .7);
+}
+
 
 #buttonRow {
     display: flex;
