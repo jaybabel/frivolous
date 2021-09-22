@@ -65,7 +65,7 @@ const questionArrayLength = 15
 
 // leaderBoardArray of arrays [playerName, correct answers, total questions]
 const leaderBoardArray = []
-const currentPlayer = ["", "", ""]
+const currentPlayer = ["", "", "", ""]
 
 let playerName
 let playerScore = 0
@@ -186,6 +186,10 @@ function displayLeaderBoard() {
             }
         }
         // =========================== Add Leaders to Ordered List ========================
+        for (j = 0; j < leaderBoardArray.length; j++) {
+            let x  = leaderBoardArray[j][1] / leaderBoardArray[j][2]
+            leaderBoardArray[j][3] = Math.round(x * 100) / 100
+        }
         for (let i = 0; i < leaderBoardArray.length; i++) {
             let x = document.createElement("LI")
             let t
