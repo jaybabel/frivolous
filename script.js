@@ -70,7 +70,7 @@ const currentPlayer = ["", "", ""]
 let playerName
 let playerScore = 0
 let questionCount = 0
-let maxQuestions = 3
+let maxQuestions = 10
 let rQ
 let currentQuestion
 let correctAnswer
@@ -145,6 +145,28 @@ function updateScoreboard() {
     document.getElementById("currentQuestionCount").innerHTML = " out of: "+questionCount
 }
 
+function gameFeedback() {
+    switch (playerScore / questionCount) {
+        case 1:
+            console.log("Wow! You sure do know a lot of unimportant stuff!")
+            alert("Great Score!")
+            break
+        case .9:
+            console.log("Hey! That's pretty good.")
+            alert("Hey! That's pretty good.")
+            break
+        case .8:
+            console.log("Not bad. Not bad at all")
+            alert("Not bad. Not bad at all")
+            break
+        default:
+            console.log("Keep trying.")
+            alert("Keep trying.")
+            break
+    }
+//    
+}
+
 function displayLeaderBoard() {
         // ================= remove Leaders (from StackOverflow) ====================
         let c = document.getElementById("leaderList").childElementCount
@@ -196,6 +218,7 @@ function updateTheLeaderBoard() {
 function gameOver() {
     questionCount ++
     updateScoreboard()
+    gameFeedback() 
     document.querySelector("#btnSubmitAnswer").removeEventListener("click", getPlayerAnswer);
     currentPlayer[1] = playerScore
     currentPlayer[2] = questionCount
