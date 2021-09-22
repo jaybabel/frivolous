@@ -73,9 +73,10 @@ __The Gold Plan__
 
  _Implemented_
   
+        * Add a board to track top 5 scores
+        
  _Partially implemented_
   
-      * Add a board to track top 5 scores
       * Enhanced graphics
       
   _Not implemented_
